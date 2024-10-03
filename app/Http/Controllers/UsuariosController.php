@@ -45,36 +45,19 @@ class UsuariosController extends Controller
 
     public function validarUsuario(Request $request)
     {
-        $credentials = $request->only('nombre_usuario', 'password');
-    
-        // Buscar el usuario por nombre de usuario
-        $usuario = Usuarios::where('nombre_usuario', $credentials['nombre_usuario'])->first();
-    
-        if (!$usuario) {
-            // Usuario no encontrado
-            return response()->json([
-                'mensaje' => 'El usuario no existe',
-            ]);
-        }
-    
-        // Verificar si la contraseña es correcta
-        if (!Hash::check($credentials['password'], $usuario->password)) {
-            // Contraseña incorrecta
-            return response()->json([
-                'mensaje' => 'Contraseña incorrecta',
-            ]);
-        }
-    
+        $credentials = $request->only('nombre_usuario', 'password');    
         // Intentar autenticar con las credenciales
         if (Auth::attempt($credentials)) {
             // Autenticación exitosa
             return response()->json([
                 'mensaje' => 'Validación Correcta',
+                'codigo' => 200,                
             ]);
         } else {
             // Autenticación fallida (aunque esto normalmente no se ejecutará si ya se verificó la contraseña)
             return response()->json([
                 'mensaje' => 'Datos incorrectos',
+                'codigo' => 400
             ]);
         }
     }
