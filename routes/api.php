@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ModelosController;
+use App\Http\Controllers\TipoFundaController;
 use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\PosicionesController;
 use App\Http\Controllers\MarcasController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +13,8 @@ Route::post('/crearUsuario', [UsuariosController::class, 'crearUsuario']);
 Route::post('/validarUsuario', [UsuariosController::class, 'validarUsuario']);
 Route::post('/marcas/crearMarca', [MarcasController::class, 'crearMarca']);
 Route::post('/modelos/crearModelo', [ModelosController::class, 'crearModelo']);
+Route::post('/fundasTipos/crearTipoFunda', [TipoFundaController::class, 'crearTipoFunda']);
+Route::post('/posiciones/crearPosicion', [PosicionesController::class, 'crearPosicion']);
 Route::get('/marcas', [MarcasController::class, 'index']);
 
 

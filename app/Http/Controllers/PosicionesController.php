@@ -2,37 +2,45 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TipoFunda;
+use App\Models\Posiciones;
 use Illuminate\Http\Request;
 
-class TipoFundaController extends Controller
+class PosicionesController extends Controller
 {
     public function index()
     {
         //
     }
 
-    public function crearTipoFunda(Request $request)
+
+    public function crearPosicion(Request $request)
     {
-        // Validar los datos de entrada
         $validated = $request->validate([
-            'nombre_tipo_funda' => 'required|string|max:60'
+            'muro' => 'required|integer',
+            'clave' => 'required|string|max:5',
+            'cantidad' => 'required|integer'
         ]);
 
         try {
             // Crear nueva instancia del modelo y asignar valores
-            $tipoFunda = new TipoFunda;
-            $tipoFunda->nombre_tipo_funda = $validated['nombre_tipo_funda'];
+            $posicion = new Posiciones;
 
-            // Guardar en la base de datos
-            $tipoFunda->save();
+            $listaPosiciones = [];
+            for ($i = 1; $i <= $validated['cantidad']; $i++) {
+                $listaPosiciones[] = [
+                    'muro' => 1,
+                    'clave_posicion' => $request['clave'] . $i
+                ];
+            }
+
+            Posiciones::insert($listaPosiciones);
 
             // Retornar una respuesta exitosa
             return response()->json([
                 'success' => true,
-                'message' => 'Tipo de funda creada exitosamente',
+                'message' => 'Posiciones creadas con exito',
                 'codigo' => 201,
-                'data' => $tipoFunda
+                'data' => $posicion
             ], 201); // Código HTTP 201 para creación exitosa
 
         } catch (\Exception $e) {
@@ -43,29 +51,35 @@ class TipoFundaController extends Controller
                 'error' => $e->getMessage()
             ], 500); // Código HTTP 500 para error interno del servidor
         }
+
     }
+
 
     public function store(Request $request)
     {
         //
     }
 
-    public function show(TipoFunda $tipoFunda)
+
+    public function show(Posiciones $posiciones)
     {
         //
     }
 
-    public function edit(TipoFunda $tipoFunda)
+
+    public function edit(Posiciones $posiciones)
     {
         //
     }
 
-    public function update(Request $request, TipoFunda $tipoFunda)
+
+    public function update(Request $request, Posiciones $posiciones)
     {
         //
     }
 
-    public function destroy(TipoFunda $tipoFunda)
+
+    public function destroy(Posiciones $posiciones)
     {
         //
     }

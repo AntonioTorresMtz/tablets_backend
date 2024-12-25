@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TipoFunda extends Model
+class Posiciones extends Model
 {
     public $timestamps = false;
-    protected $table = 'CAT_TIPO_FUNDA';
+    protected $table = 'TBL_POSICIONES';
     use HasFactory;
 }
