@@ -5,10 +5,13 @@ use App\Http\Controllers\TipoFundaController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\PosicionesController;
 use App\Http\Controllers\MarcasController;
+use App\Http\Controllers\ProductosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/usuarios', [UsuariosController::class, 'index']);
+Route::get('/productos', [ProductosController::class, 'index']);
+Route::post('/productos/BuscarClave', [ProductosController::class, 'buscarProducto']);
 Route::post('/crearUsuario', [UsuariosController::class, 'crearUsuario']);
 Route::post('/validarUsuario', [UsuariosController::class, 'validarUsuario']);
 Route::post('/marcas/crearMarca', [MarcasController::class, 'crearMarca']);
