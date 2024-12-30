@@ -6,11 +6,13 @@ use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\PosicionesController;
 use App\Http\Controllers\MarcasController;
 use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\VentasController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/usuarios', [UsuariosController::class, 'index']);
 Route::get('/productos', [ProductosController::class, 'index']);
+Route::post('/ventas/insertarDetalleVenta', [VentasController::class, 'insertarDetalleVenta']);
 Route::post('/productos/BuscarClave', [ProductosController::class, 'buscarProducto']);
 Route::post('/crearUsuario', [UsuariosController::class, 'crearUsuario']);
 Route::post('/validarUsuario', [UsuariosController::class, 'validarUsuario']);
