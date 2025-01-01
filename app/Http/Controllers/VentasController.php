@@ -36,7 +36,7 @@ class VentasController extends Controller
 
             $idVenta = DB::table('TBL_VENTA_PRODUCTOS')->insertGetId([
                 'usuario' => 1, // Ajusta este valor según corresponda
-                'total' => $total,           
+                'total' => $total,
             ]);
 
             // ✅ 2. Insertar en TBL_DETALLE_VENTA y REL_DETALLE_VENTA
@@ -49,6 +49,14 @@ class VentasController extends Controller
                     'importe' => ($detalle['cantidad'] * $detalle['precio']) - $detalle['descuento']
                 ]);
 
+                $cantidad = $detalle['cantidad'];
+                DB::table('TBL_PRODUCTO')
+                    ->where('PK_producto', $detalle['id']) // Filtrar registros
+                    ->update([
+                        'cantidad' => DB::raw("cantidad - $cantidad")
+                    ]);
+
+
                 // ✅ 3. Insertar en REL_DETALLE_VENTA
                 DB::table('REL_DETALLE_VENTA')->insert([
                     'FK_detalle' => $idDetalle,
@@ -58,7 +66,11 @@ class VentasController extends Controller
 
             DB::commit();
 
-            return response()->json(['mensaje' => 'Detalle de venta insertado correctamente']);
+            return response()->json([
+                'success' => true,
+                'message' => 'Venta registrada con exito',
+                'codigo' => 201,
+            ], 201);
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['error' => 'Error al insertar detalle de venta: ' . $e->getMessage()], 500);
