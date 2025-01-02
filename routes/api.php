@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/usuarios', [UsuariosController::class, 'index']);
 Route::get('/productos', [ProductosController::class, 'index']);
+Route::post('/productos/actualizarCantidad', [ProductosController::class, 'actualizarCantidad']);
 Route::post('/ventas/insertarDetalleVenta', [VentasController::class, 'insertarDetalleVenta']);
 Route::post('/productos/BuscarClave', [ProductosController::class, 'buscarProducto']);
 Route::post('/crearUsuario', [UsuariosController::class, 'crearUsuario']);
