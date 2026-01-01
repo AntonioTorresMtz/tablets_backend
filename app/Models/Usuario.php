@@ -9,7 +9,7 @@ class Usuario extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = 'TBL_USUARIOS'; // Nombre de la tabla
+    protected $table = 'tbl_usuarios'; // Nombre de la tabla
 
     protected $fillable = [
         'nombre_usuario',

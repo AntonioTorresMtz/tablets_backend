@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class TipoFunda extends Model
 {
     public $timestamps = false;
-    protected $table = 'CAT_TIPO_FUNDA';
+    protected $table = 'cat_tipo_funda';
     use HasFactory;
 }

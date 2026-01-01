@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Posiciones extends Model
 {
     public $timestamps = false;
-    protected $table = 'TBL_POSICIONES';
+    protected $table = 'tbl_posiciones';
     use HasFactory;
 }

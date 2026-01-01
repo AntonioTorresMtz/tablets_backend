@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Usuarios extends Model
 {
-    protected $table = 'TBL_USUARIOS';
+    protected $table = 'tbl_usuarios';
 }
