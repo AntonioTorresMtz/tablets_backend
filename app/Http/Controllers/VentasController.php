@@ -156,14 +156,14 @@ class VentasController extends Controller
                 $total += ($detalle['cantidad'] * $detalle['precio']) - $detalle['descuento'];
             }
 
-            $idVenta = DB::table('TBL_VENTA_PRODUCTOS')->insertGetId([
+            $idVenta = DB::table('tbl_venta_productos')->insertGetId([
                 'usuario' => 1, // Ajusta este valor según corresponda
                 'total' => $total,
             ]);
 
             // ✅ 2. Insertar en TBL_DETALLE_VENTA y REL_DETALLE_VENTA
             foreach ($request->all() as $detalle) {
-                $idDetalle = DB::table('TBL_DETALLE_VENTA')->insertGetId([
+                $idDetalle = DB::table('tbl_detalle_venta')->insertGetId([
                     'FK_producto' => $detalle['id'],
                     'cantidad_producto' => $detalle['cantidad'],
                     'precio_unitario' => $detalle['precio'],
