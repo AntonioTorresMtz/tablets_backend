@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ventas extends Model
 {
-    protected $table = 'TBL_VENTA_PRODUCTOS';
+    protected $table = 'tbl_venta_productos';
     public $timestamps = false; 
     protected $primaryKey = 'PK_venta';
          protected $fillable = [
