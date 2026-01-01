@@ -128,7 +128,7 @@ class ProductosController extends Controller
 
         $cantidad = $validate['cantidad'];
         try {
-            $resultado = DB::table('TBL_PRODUCTO')
+            $resultado = DB::table('tbl_producto')
                 ->where('PK_producto', $validate['id_producto']) // Filtrar registros
                 ->update([
                     'cantidad' => DB::raw("cantidad + $cantidad")
@@ -138,7 +138,8 @@ class ProductosController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Datos actualizados con exito',
-                'codigo' => 201
+                'codigo' => 201,
+                'data' => $resultado
             ], 201); // Código HTTP 201 para consulta exitosa
 
         } catch (\Exception $e) {
